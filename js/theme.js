@@ -17,5 +17,6 @@ function initTheme() {
     themeToggle.addEventListener('click', () => {
         const currentTheme = htmlElement.getAttribute('data-theme');
         setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        document.dispatchEvent(new Event('themeChanged'));
     });
 }

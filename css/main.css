@@ -38,53 +38,10 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-@media (max-width: 992px) {
-  .dashboard {
-    grid-template-columns: 1fr !important;
-    padding: 15px !important;
-    gap: 20px !important;
-  }
-  .sidebar {
-    width: 100% !important;
-  }
-  .sidebar .sidebar-nav ul {
-    flex-direction: row !important;
-    overflow-x: auto;
-    padding-bottom: 10px;
-  }
-  .sidebar .sidebar-nav ul li a {
-    padding: 12px 15px !important;
-    font-size: 0.9rem !important;
-    white-space: nowrap;
-  }
-  .top-row {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-  }
-  .header {
-    padding: 0 15px !important;
-  }
-  .header .logo {
-    font-size: 1.3rem !important;
-  }
-  .header .nav-menu {
-    display: none;
-  }
-  .balance-card, .chart-box, .trade-box, .history-table, .settings-card {
-    padding: 20px !important;
-    border-radius: 18px !important;
-  }
-  .trade-buttons {
-    flex-direction: column !important;
-  }
-  .trade-buttons button {
-    width: 100% !important;
-  }
-}
 .header {
   background: var(--card-bg);
   height: 75px;
-  display: flex !important;
+  display: flex;
   align-items: center;
   padding: 0 5%;
   border-bottom: 1px solid var(--border-color);
@@ -93,13 +50,12 @@ body {
   z-index: 1000;
 }
 .header .nav-container {
-  display: flex !important;
-  justify-content: space-between !important;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  position: relative;
 }
 .header .logo {
   font-weight: 800;
@@ -110,25 +66,13 @@ body {
   color: #818cf8;
 }
 .header .nav-menu {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-}
-.header .nav-menu a {
-  color: var(--text-color);
-  font-weight: 800;
-}
-.header .nav-menu a.active {
-  color: #818cf8;
+  display: none !important;
 }
 
 .header-actions {
-  display: flex !important;
+  display: flex;
   align-items: center;
   gap: 15px;
-  position: relative;
 }
 .header-actions .action-btn {
   background: none;
@@ -136,21 +80,20 @@ body {
   color: var(--text-color);
   font-size: 1.4rem;
   cursor: pointer;
+  transition: 0.2s;
+}
+.header-actions .action-btn:hover {
+  color: #818cf8;
 }
 
 .dashboard {
-  display: grid !important;
-  grid-template-columns: 280px 1fr !important;
-  gap: 35px !important;
-  padding: 35px !important;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 35px;
+  padding: 35px;
   max-width: 1500px;
   margin: 0 auto;
   align-items: start;
-}
-@media (max-width: 992px) {
-  .dashboard {
-    grid-template-columns: 1fr !important;
-  }
 }
 
 .sidebar-nav ul {
@@ -170,8 +113,8 @@ body {
 }
 .sidebar-nav ul li a i {
   margin-right: 15px;
-  width: 25px;
   font-size: 1.3rem;
+  width: 25px;
 }
 .sidebar-nav ul li a:hover, .sidebar-nav ul li a.active {
   background: #818cf8;
@@ -179,28 +122,126 @@ body {
 }
 
 .content {
-  display: grid !important;
-  gap: 30px !important;
+  width: 100%;
+}
+
+#dashboard-content {
+  display: grid;
+  gap: 30px;
   width: 100%;
 }
 
 .top-row {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 30px !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 }
-@media (max-width: 768px) {
+
+@media (max-width: 992px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  * {
+    box-sizing: border-box !important;
+  }
+  .dashboard {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 15px !important;
+    gap: 20px !important;
+  }
+  .content {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #dashboard-content {
+    gap: 20px !important;
+  }
   .top-row {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 20px !important;
+  }
+  .balance-card, .chart-box, .trade-box, .history-table, .market-summary-card, .settings-card, .contributor-card {
+    width: 100% !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+  .history-table {
+    padding: 15px !important;
+  }
+  .table-responsive {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    width: 100% !important;
+    min-width: 500px;
+  }
+  .trade-box form {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 15px !important;
+  }
+  .trade-box form .input-group {
+    width: 100% !important;
+  }
+  .trade-box form .trade-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+  .trade-box form .trade-buttons button {
+    flex: 1 !important;
+    height: 50px !important;
+    padding: 0 !important;
+  }
+  #mainChart {
+    width: 100% !important;
+    min-height: 250px;
+  }
+  .sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .sidebar-nav {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .sidebar-nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    padding: 5px 0 !important;
+    margin: 0 !important;
+    gap: 10px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sidebar-nav ul li {
+    flex-shrink: 0 !important;
+  }
+  .sidebar-nav ul li a {
+    white-space: nowrap !important;
+    padding: 12px 18px !important;
+  }
+  .header {
+    padding: 0 15px !important;
   }
 }
-
-#dashboard-content {
-  flex-direction: column !important;
-  gap: 30px !important;
-  width: 100%;
-}
-
 .balance-card, .chart-box, .trade-box, .history-table, .market-summary-card, .settings-card, .contributor-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);

@@ -1,126 +1,192 @@
-// scss/_layout.scss
-
-// --- MOBİL VE TABLET UYUMLULUĞU (IPHONE 14 PRO MAX DAHİL) ---
-@media (max-width: 992px) {
-    .dashboard {
-        // Yan yana olan yapıyı alt alta çeviriyoruz
-        grid-template-columns: 1fr !important; 
-        padding: 15px !important;
-        gap: 20px !important;
-    }
-
-    .sidebar {
-        // Menü yukarıda yatay veya dikey geniş dursun
-        width: 100% !important;
-        .sidebar-nav ul {
-            flex-direction: row !important; // Menü elemanlarını yan yana diz
-            overflow-x: auto; // Eğer sığmazsa kaydırılabilir yap
-            padding-bottom: 10px;
-            
-            li a {
-                padding: 12px 15px !important;
-                font-size: 0.9rem !important;
-                white-space: nowrap; // Yazılar alt satıra geçmesin
-            }
-        }
-    }
-
-    .top-row {
-        // Üstteki bakiye ve piyasa kartlarını alt alta al
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-
-    .header {
-        padding: 0 15px !important;
-        .logo { font-size: 1.3rem !important; }
-        .nav-menu { display: none; } // "Cüzdanım" yazısını mobilde gizle (yer kazandırır)
-    }
-
-    // Kart iç boşluklarını mobilde biraz daraltalım ki içerik sığsın
-    .balance-card, .chart-box, .trade-box, .history-table, .settings-card {
-        padding: 20px !important;
-        border-radius: 18px !important;
-    }
-
-    // Al-Sat butonlarını mobilde alt alta alalım (daha kolay basılır)
-    .trade-buttons {
-        flex-direction: column !important;
-        button { width: 100% !important; }
-    }
-}
-
-// HEADER
+// ==========================================
+// 1. HEADER (ÜST MENÜ - GERİ GELDİ!)
+// ==========================================
 .header {
     background: var(--card-bg);
     height: 75px;
-    display: flex !important;
+    display: flex;
     align-items: center;
     padding: 0 5%;
     border-bottom: 1px solid var(--border-color);
-    position: sticky; top: 0; z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
     .nav-container {
-        display: flex !important;
-        justify-content: space-between !important;
+        display: flex;
+        justify-content: space-between; // Logoyu sola, ikonları sağa ayırır
         align-items: center;
-        width: 100%; max-width: 1400px; margin: 0 auto; position: relative;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
     }
 
     .logo {
-        font-weight: 800; font-size: 1.7rem; text-transform: uppercase;
-        span { color: $primary; }
+        font-weight: 800;
+        font-size: 1.7rem;
+        text-transform: uppercase;
+        span { color: #818cf8; } // $primary
     }
 
-    .nav-menu {
-        position: absolute; left: 50%; transform: translateX(-50%);
-        display: flex; gap: 20px;
-        a { color: var(--text-color); font-weight: 800; &.active { color: $primary; } }
-    }
+    // Cüzdanım yazısını gizler
+    .nav-menu { display: none !important; }
 }
 
 .header-actions {
-    display: flex !important; align-items: center; gap: 15px; position: relative;
-    .action-btn { background: none; border: none; color: var(--text-color); font-size: 1.4rem; cursor: pointer; }
-}
+    display: flex;
+    align-items: center;
+    gap: 15px;
 
-// ANA YERLEŞİM (DASHBOARD)
-.dashboard {
-    display: grid !important;
-    grid-template-columns: 280px 1fr !important; // Menü 280px, kalan yer içerik
-    gap: 35px !important;
-    padding: 35px !important;
-    max-width: 1500px; margin: 0 auto;
-    align-items: start;
-    @media (max-width: 992px) { grid-template-columns: 1fr !important; }
-}
-
-// SOL MENÜ (SIDEBAR)
-.sidebar-nav ul {
-    display: flex; flex-direction: column; gap: 12px;
-    li a {
-        display: flex; align-items: center; padding: 18px 22px;
-        color: var(--text-color); border-radius: 15px; font-weight: 800; font-size: 1.1rem;
-        transition: 0.2s;
-        i { margin-right: 15px; width: 25px; font-size: 1.3rem; }
-        &:hover, &.active { background: $primary; color: white; }
+    .action-btn {
+        background: none; border: none; color: var(--text-color);
+        font-size: 1.4rem; cursor: pointer; transition: 0.2s;
+        &:hover { color: #818cf8; }
     }
 }
 
-// İÇERİK KARTLARI (GRID FIX)
-.content {
-    display: grid !important; gap: 30px !important; width: 100%;
+// ==========================================
+// 2. DASHBOARD ANA YERLEŞİM (MASAÜSTÜ)
+// ==========================================
+.dashboard {
+    display: grid; 
+    grid-template-columns: 280px 1fr; 
+    gap: 35px;
+    padding: 35px;
+    max-width: 1500px;
+    margin: 0 auto;
+    align-items: start;
 }
 
-.top-row {
-    display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 30px !important;
-    @media (max-width: 768px) { grid-template-columns: 1fr !important; }
+// Sol Menü
+.sidebar-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    li a {
+        display: flex; align-items: center; padding: 18px 22px;
+        color: var(--text-color); border-radius: 15px;
+        font-weight: 800; font-size: 1.1rem; transition: 0.2s;
+        
+        i { margin-right: 15px; font-size: 1.3rem; width: 25px; }
+        &:hover, &.active { background: #818cf8; color: white; }
+    }
 }
 
-// --- DASHBOARD İÇERİK KARTLARI BOŞLUK AYARI ---
-#dashboard-content {
-    // display özelliği silindi, çünkü onu JavaScript (aç/kapa yaparken) yönetecek.
-    flex-direction: column !important;
-    gap: 30px !important; 
-    width: 100%;
+.content { width: 100%; }
+
+#dashboard-content { display: grid; gap: 30px; width: 100%; }
+
+.top-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+
+// ==========================================
+// 3. MOBİL UYUMLULUK (SİMETRİK VE BUG'SIZ)
+// ==========================================
+@media (max-width: 992px) {
+    
+    // Ekranı Kilitler (Sıfır Taşma)
+    html, body {
+        overflow-x: hidden !important; 
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    * { box-sizing: border-box !important; }
+
+    // Dashboard Simetrik Boşlukları
+    .dashboard {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important; // 100vw iptal, çünkü kaydırma çubuğuyla çakışıyor
+        max-width: 100% !important;
+        padding: 15px !important; 
+        gap: 20px !important;
+    }
+
+    // İÇERİK (DİKKAT: display: flex !important KULLANMIYORUZ Kİ JS GİZLEYEBİLSİN)
+    .content {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #dashboard-content {
+        gap: 20px !important; // Kartlar arası boşluk
+    }
+
+    .top-row {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 20px !important;
+    }
+
+    // Kartların Sınırları
+    .balance-card, .chart-box, .trade-box, .history-table, .market-summary-card, .settings-card, .contributor-card {
+        width: 100% !important;
+        padding: 20px !important;
+        margin: 0 !important;
+        overflow: hidden !important; 
+    }
+
+    // Tablo (Sığmazsa Kaydır)
+    .history-table { padding: 15px !important; }
+    .table-responsive { width: 100% !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+    table { width: 100% !important; min-width: 500px; }
+
+    // Al/Sat Butonları
+    .trade-box form {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 15px !important;
+
+        .input-group { width: 100% !important; }
+
+        .trade-buttons {
+            display: flex !important;
+            flex-direction: row !important; // Butonlar yanyana
+            width: 100% !important;
+            gap: 10px !important;
+            button { flex: 1 !important; height: 50px !important; padding: 0 !important; }
+        }
+    }
+
+    #mainChart { width: 100% !important; min-height: 250px; }
+
+    // Sol Menü (Yatay)
+    .sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important; // Dışarı taşan butonları gizle
+    }
+    .sidebar-nav {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .sidebar-nav ul {
+        display: flex !important;
+        flex-direction: row !important; 
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important; // Sadece kendi içinde kaydırmaya izin ver
+        padding: 5px 0 !important;
+        margin: 0 !important;
+        gap: 10px !important; // Butonların arasını biraz açalım
+        -webkit-overflow-scrolling: touch; // iPhone'da yağ gibi kaysın
+        
+        li {
+            flex-shrink: 0 !important; // Butonların birbirini ezip şeklinin bozulmasını engeller
+        }
+
+        li a { 
+            white-space: nowrap !important; // Yazılar alt satıra geçmesin
+            padding: 12px 18px !important;
+        }
+    }
+    
+    .header { padding: 0 15px !important; }
 }

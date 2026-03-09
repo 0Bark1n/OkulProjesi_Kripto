@@ -14,6 +14,7 @@ function initChart() {
         }
     };
 
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     let currentCoin = 'BTC';
 
     // ApexCharts İlk Kurulum
@@ -33,14 +34,55 @@ function initChart() {
         xaxis: { 
             labels: { show: false },
             axisBorder: { show: false },
-            axisTicks: { show: false }
+            axisTicks: { show: false },
+            tooltip: {
+                enabled: false // Alttan çıkan o sinir bozucu "6" vs. yazan oku tamamen kapatır
+            }
         },
         yaxis: { labels: { style: { colors: '#888', fontFamily: 'Montserrat' } } },
-        grid: { borderColor: 'rgba(128, 128, 128, 0.1)' }
+        grid: { borderColor: 'rgba(128, 128, 128, 0.1)' },
+        
+        // --- YENİ EKLENEN KISIM: TOOLTIP (BİLGİ KUTUSU) AYARLARI ---
+        tooltip: {
+            theme: currentTheme, // Sitenin temasına otomatik uyum sağlar (Siyahsa siyah, beyazsa beyaz)
+            x: {
+                show: false // Kutunun üstündeki gereksiz X ekseni numarasını gizler
+            },
+            y: {
+                title: {
+                    formatter: function () {
+                        return ''; // "Series-1" gibi gereksiz başlıkları siler
+                    }
+                },
+                formatter: function (val) {
+                    // Fiyatı sadece şık bir şekilde yazdırır: Örn: $69.300,00
+                    return "$" + val.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+            },
+            marker: {
+                show: false // Fiyatın yanındaki yeşil/kırmızı yuvarlağı gizler (daha sade durması için)
+            }
+        }
     };
 
     var chart = new ApexCharts(document.querySelector("#mainChart"), options);
     chart.render();
+
+    // Tema değiştiğinde grafiği anında güncelle
+    document.addEventListener('themeChanged', () => {
+        // Sitenin o anki temasını kontrol et (dark mı light mı?)
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const isDark = currentTheme === 'dark';
+
+        // Grafiği yeni temaya göre güncelle (chart değişkeninin adının chart olduğunu varsayıyorum)
+        if (typeof chart !== 'undefined') {
+            chart.updateOptions({
+                tooltip: {
+                    theme: isDark ? 'dark' : 'light'
+                }
+            });
+        }
+    });
 
     // Sekme Değiştirme (BTC/ETH Butonları)
     document.querySelectorAll('.coin-btn').forEach(btn => {
