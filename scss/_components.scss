@@ -196,3 +196,134 @@
     50% { opacity: 1; }
     100% { opacity: 0.5; }
 }
+
+// ==========================================
+// KESİN ÇÖZÜM FOOTER (JİLET GİBİ)
+// ==========================================
+.main-footer {
+    background: var(--card-bg) !important;
+    padding: 50px 0 20px 0 !important;
+    margin-top: 80px !important;
+    border-top: 1px solid var(--border-color) !important;
+    width: 100% !important;
+    color: var(--text-color) !important;
+    clear: both; // Diğer elemanların altına itmek için
+
+    .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex !important;
+        flex-wrap: wrap !important; // Mobilde alt alta geçmesi için
+        justify-content: space-between !important;
+        padding: 0 5% !important;
+        gap: 30px;
+    }
+
+    .footer-section {
+        flex: 1; // Eşit genişlik
+        min-width: 250px; // Çok sıkışmasın
+        margin-bottom: 30px;
+
+        h3 {
+            font-size: 1.2rem !important;
+            margin-bottom: 20px !important;
+            color: var(--text-color) !important;
+            font-weight: 800 !important;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: var(--text-color) !important;
+            opacity: 0.8 !important;
+            line-height: 1.6 !important;
+            font-size: 0.95rem !important;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+
+            li {
+                margin-bottom: 12px !important;
+                
+                a {
+                    color: var(--text-color) !important;
+                    opacity: 0.7 !important;
+                    text-decoration: none !important;
+                    transition: 0.3s ease;
+                    font-size: 0.95rem !important;
+                    display: inline-block;
+
+                    &:hover {
+                        opacity: 1 !important;
+                        color: #818cf8 !important; // $primary moru
+                        transform: translateX(5px);
+                    }
+                }
+            }
+        }
+    }
+
+    // Logo Özel Stil
+    .about .logo {
+        margin-bottom: 20px !important;
+        display: block;
+        font-size: 1.6rem !important;
+        span { color: #818cf8 !important; }
+    }
+
+    .social-icons {
+        display: flex !important;
+        gap: 15px !important;
+        margin-top: 20px;
+        
+        a {
+            color: var(--text-color) !important;
+            font-size: 1.3rem !important;
+            opacity: 0.7 !important;
+            transition: 0.3s;
+            &:hover {
+                opacity: 1 !important;
+                color: #818cf8 !important;
+                transform: scale(1.2);
+            }
+        }
+    }
+
+    .footer-bottom {
+        text-align: center !important;
+        margin-top: 40px !important;
+        padding-top: 25px !important;
+        border-top: 1px solid var(--border-color) !important;
+        width: 100%;
+        
+        p {
+            font-size: 0.85rem !important;
+            opacity: 0.5 !important;
+            margin: 0;
+        }
+    }
+}
+
+// MOBİL AYARI
+@media (max-width: 768px) {
+    .main-footer {
+        text-align: center !important;
+        
+        .footer-container {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+
+        .social-icons {
+            justify-content: center !important;
+        }
+        
+        .footer-section {
+            width: 100% !important;
+            min-width: 100% !important;
+        }
+    }
+}

@@ -4,29 +4,29 @@
  */
 
 const initNavigation = () => {
-    const navLinks = document.querySelectorAll('.sidebar-nav a');
+    // Sitenin neresinde olursa olsun data-target niteliği olan tüm linkleri seç
+    const allNavLinks = document.querySelectorAll('a[data-target]');
     
-    // 1. BURAYA YENİ PANELİ EKLİYORUZ
     const panels = {
         'dashboard-content': document.getElementById('dashboard-content'),
-        'history-panel': document.getElementById('history-panel'), // YENİ PANEL
-        'assets-panel': document.getElementById('assets-panel'), // BURA EKLENDİ
+        'assets-panel': document.getElementById('assets-panel'),
+        'history-panel': document.getElementById('history-panel'),
         'settings-panel': document.getElementById('settings-panel'),
         'contributors-panel': document.getElementById('contributors-panel')
     };
 
-    if (!navLinks.length) return;
+    if (!allNavLinks.length) return;
 
-    navLinks.forEach(link => {
+    allNavLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
 
             const targetId = link.getAttribute('data-target');
             const targetPanel = panels[targetId];
 
-            if (!targetPanel || link.classList.contains('active')) return;
+            if (!targetPanel) return;
 
-            // Panelleri gizle
+            // 1. TÜM PANELLERİ GİZLE
             Object.values(panels).forEach(panel => {
                 if (panel) {
                     panel.style.display = 'none';
@@ -34,9 +34,11 @@ const initNavigation = () => {
                 }
             });
 
-            navLinks.forEach(l => l.classList.remove('active'));
+            // 2. TÜM LİNKLERDEN 'ACTIVE' SINIFINI SİL
+            // (Hem yan menüden hem footer'dan siler)
+            allNavLinks.forEach(l => l.classList.remove('active'));
 
-            // HEDEF PANELİ AÇ
+            // 3. SEÇİLEN PANELİ GÖSTER
             if (targetId === 'dashboard-content') {
                 const isMobile = window.innerWidth <= 992;
                 targetPanel.style.display = isMobile ? 'block' : 'grid';
@@ -44,15 +46,18 @@ const initNavigation = () => {
                 targetPanel.style.display = 'block';
             }
 
-            link.classList.add('active');
+            // 4. AYNI HEDEFE SAHİP TÜM LİNKLERİ AKTİF YAP
+            // (Örn: Footer'dan Dashboard'a basarsan, yan menüdeki Dashboard da mor olur)
+            document.querySelectorAll(`a[data-target="${targetId}"]`).forEach(l => {
+                l.classList.add('active');
+            });
+
+            // Animasyonu tetikle ve yukarı kaydır
             void targetPanel.offsetWidth; 
             targetPanel.classList.add('tab-content');
-
-            // 2. BURAYA DA 'assets-panel' İÇİN GRAFİK YENİLEME EKLİYORUZ
+            
             if (targetId === 'dashboard-content' || targetId === 'assets-panel') {
-                setTimeout(() => {
-                    window.dispatchEvent(new Event('resize'));
-                }, 100); // Gizli sekmeden çıkan ApexCharts grafiklerinin bozuk çizilmesini önler
+                setTimeout(() => window.dispatchEvent(new Event('resize')), 100);
             }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });

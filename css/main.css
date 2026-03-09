@@ -94,6 +94,7 @@ body {
   max-width: 1500px;
   margin: 0 auto;
   align-items: start;
+  min-height: calc(100vh - 400px);
 }
 
 .sidebar-nav ul {
@@ -137,12 +138,94 @@ body {
   gap: 30px;
 }
 
+.panel {
+  min-height: 60vh;
+}
+
+.main-footer {
+  background: var(--card-bg);
+  padding: 60px 0 20px 0;
+  margin-top: 80px;
+  border-top: 1px solid var(--border-color);
+  width: 100%;
+  color: var(--text-color);
+}
+.main-footer .footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 5%;
+  gap: 40px;
+}
+.main-footer .footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+.main-footer .footer-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.main-footer .footer-section p {
+  opacity: 0.7;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+.main-footer .footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+.main-footer .footer-section ul li {
+  margin-bottom: 12px;
+}
+.main-footer .footer-section ul li a {
+  color: var(--text-color);
+  opacity: 0.7;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 0.95rem;
+  display: inline-block;
+}
+.main-footer .footer-section ul li a:hover {
+  opacity: 1;
+  color: #818cf8;
+  transform: translateX(5px);
+}
+.main-footer .social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+.main-footer .social-icons a {
+  color: var(--text-color);
+  font-size: 1.3rem;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+.main-footer .social-icons a:hover {
+  opacity: 1;
+  color: #818cf8;
+  transform: scale(1.1);
+}
+.main-footer .footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid var(--border-color);
+}
+.main-footer .footer-bottom p {
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
+
 @media (max-width: 992px) {
   html, body {
     overflow-x: hidden !important;
     width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
   }
   * {
     box-sizing: border-box !important;
@@ -151,83 +234,23 @@ body {
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
-    max-width: 100% !important;
     padding: 15px !important;
-    gap: 20px !important;
-  }
-  .content {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  #dashboard-content {
     gap: 20px !important;
   }
   .top-row {
     display: flex !important;
     flex-direction: column !important;
-    width: 100% !important;
     gap: 20px !important;
-  }
-  .balance-card, .chart-box, .trade-box, .history-table, .market-summary-card, .settings-card, .contributor-card {
-    width: 100% !important;
-    padding: 20px !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-  }
-  .history-table {
-    padding: 15px !important;
-  }
-  .table-responsive {
-    width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  table {
-    width: 100% !important;
-    min-width: 500px;
-  }
-  .trade-box form {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-    gap: 15px !important;
-  }
-  .trade-box form .input-group {
-    width: 100% !important;
-  }
-  .trade-box form .trade-buttons {
-    display: flex !important;
-    flex-direction: row !important;
-    width: 100% !important;
-    gap: 10px !important;
-  }
-  .trade-box form .trade-buttons button {
-    flex: 1 !important;
-    height: 50px !important;
-    padding: 0 !important;
-  }
-  #mainChart {
-    width: 100% !important;
-    min-height: 250px;
   }
   .sidebar {
     width: 100% !important;
-    max-width: 100% !important;
     overflow: hidden !important;
-  }
-  .sidebar-nav {
-    width: 100% !important;
-    max-width: 100% !important;
   }
   .sidebar-nav ul {
     display: flex !important;
     flex-direction: row !important;
-    width: 100% !important;
-    max-width: 100% !important;
     overflow-x: auto !important;
-    padding: 5px 0 !important;
-    margin: 0 !important;
+    padding: 5px 0 10px 0 !important;
     gap: 10px !important;
     -webkit-overflow-scrolling: touch;
   }
@@ -237,6 +260,24 @@ body {
   .sidebar-nav ul li a {
     white-space: nowrap !important;
     padding: 12px 18px !important;
+  }
+  .main-footer {
+    text-align: center;
+  }
+  .main-footer .footer-container {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .main-footer .social-icons {
+    justify-content: center !important;
+  }
+  .balance-card, .chart-box, .trade-box, .history-table, .market-summary-card, .settings-card, .contributor-card {
+    width: 100% !important;
+    padding: 20px !important;
+  }
+  .table-responsive {
+    width: 100% !important;
+    overflow-x: auto !important;
   }
   .header {
     padding: 0 15px !important;
@@ -598,6 +639,117 @@ body {
   }
   100% {
     opacity: 0.5;
+  }
+}
+.main-footer {
+  background: var(--card-bg) !important;
+  padding: 50px 0 20px 0 !important;
+  margin-top: 80px !important;
+  border-top: 1px solid var(--border-color) !important;
+  width: 100% !important;
+  color: var(--text-color) !important;
+  clear: both;
+}
+.main-footer .footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  padding: 0 5% !important;
+  gap: 30px;
+}
+.main-footer .footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 30px;
+}
+.main-footer .footer-section h3 {
+  font-size: 1.2rem !important;
+  margin-bottom: 20px !important;
+  color: var(--text-color) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+}
+.main-footer .footer-section p {
+  color: var(--text-color) !important;
+  opacity: 0.8 !important;
+  line-height: 1.6 !important;
+  font-size: 0.95rem !important;
+  margin-bottom: 20px;
+}
+.main-footer .footer-section ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.main-footer .footer-section ul li {
+  margin-bottom: 12px !important;
+}
+.main-footer .footer-section ul li a {
+  color: var(--text-color) !important;
+  opacity: 0.7 !important;
+  text-decoration: none !important;
+  transition: 0.3s ease;
+  font-size: 0.95rem !important;
+  display: inline-block;
+}
+.main-footer .footer-section ul li a:hover {
+  opacity: 1 !important;
+  color: #818cf8 !important;
+  transform: translateX(5px);
+}
+.main-footer .about .logo {
+  margin-bottom: 20px !important;
+  display: block;
+  font-size: 1.6rem !important;
+}
+.main-footer .about .logo span {
+  color: #818cf8 !important;
+}
+.main-footer .social-icons {
+  display: flex !important;
+  gap: 15px !important;
+  margin-top: 20px;
+}
+.main-footer .social-icons a {
+  color: var(--text-color) !important;
+  font-size: 1.3rem !important;
+  opacity: 0.7 !important;
+  transition: 0.3s;
+}
+.main-footer .social-icons a:hover {
+  opacity: 1 !important;
+  color: #818cf8 !important;
+  transform: scale(1.2);
+}
+.main-footer .footer-bottom {
+  text-align: center !important;
+  margin-top: 40px !important;
+  padding-top: 25px !important;
+  border-top: 1px solid var(--border-color) !important;
+  width: 100%;
+}
+.main-footer .footer-bottom p {
+  font-size: 0.85rem !important;
+  opacity: 0.5 !important;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .main-footer {
+    text-align: center !important;
+  }
+  .main-footer .footer-container {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .main-footer .social-icons {
+    justify-content: center !important;
+  }
+  .main-footer .footer-section {
+    width: 100% !important;
+    min-width: 100% !important;
   }
 }
 .notif-panel {
