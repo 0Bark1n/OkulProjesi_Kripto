@@ -185,3 +185,14 @@
 // --- DİNAMİK RENKLER (JavaScript İçin Zorunlu) ---
 .text-success { color: #22c55e !important; }
 .text-danger { color: #ef4444 !important; }
+
+#displayPrice:contains('...') {
+    animation: pulse 1.5s infinite;
+    opacity: 0.5;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}

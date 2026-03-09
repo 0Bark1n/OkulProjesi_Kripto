@@ -40,6 +40,8 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="#" class="active" data-target="dashboard-content"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                    <li><a href="#" data-target="assets-panel"><i class="fas fa-chart-pie"></i> Varlıklarım</a></li>
+                    <li><a href="#" data-target="history-panel"><i class="fas fa-list-ul"></i> İşlem Geçmişi</a></li>
                     <li><a href="#" data-target="settings-panel"><i class="fas fa-cog"></i> Ayarlar</a></li>
                     <li><a href="#" data-target="contributors-panel"><i class="fas fa-users"></i> Emeği Geçenler</a></li>
                 </ul>
@@ -112,18 +114,59 @@
                         </div>
                     </form>
                 </div>
+            </div>
 
-                <div class="history-table">
-                    <h3>İşlem Geçmişi</h3>
-                    <div class="table-responsive">
-                        <table>
-                            <thead><tr><th>Varlık</th><th>Tür</th><th>Miktar</th><th>Fiyat</th><th>Tarih</th><th>Durum</th></tr></thead>
-                            <tbody></tbody>
-                        </table>
+            <div id="assets-panel" class="panel" style="display: none;">
+                <div class="top-row">
+                    <div class="chart-box">
+                        <h3>Varlık Dağılımı</h3>
+                        <div id="donutChart" style="margin-top: 20px;"></div>
+                    </div>
+
+                    <div class="history-table">
+                        <h3>Varlık Detayları</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Varlık</th>
+                                        <th>Miktar</th>
+                                        <th>Değer (USD)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="assets-table-body">
+                                    </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <div id="history-panel" class="panel" style="display: none;">
+                <div class="history-table">
+                    <div class="table-header">
+                        <h3>Tüm İşlemleriniz</h3>
+                        <p>Geçmişten bugüne yaptığınız tüm alım-satım hareketleri.</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Varlık</th>
+                                    <th>Tür</th>
+                                    <th>Miktar</th>
+                                    <th>Fiyat</th>
+                                    <th>Tarih</th>
+                                    <th>Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody id="full-history-body">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
             <div id="settings-panel" class="settings-panel tab-content" style="display: none;">
                 <div class="settings-card">
                     <h3><i class="fas fa-tools"></i> Sistem Ayarları</h3>
@@ -168,6 +211,7 @@
     <script src="js/theme.js"></script>
     <script src="js/notif-manager.js"></script>
     <script src="js/chart-manager.js"></script>
+    <script src="js/varlik-manager.js"></script>
     <script src="js/trade-manager.js"></script>
     <script src="js/setup-settings.js"></script>
     <script src="js/navigation-manager.js"></script>
