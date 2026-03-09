@@ -1,5 +1,55 @@
 // scss/_layout.scss
 
+// --- MOBİL VE TABLET UYUMLULUĞU (IPHONE 14 PRO MAX DAHİL) ---
+@media (max-width: 992px) {
+    .dashboard {
+        // Yan yana olan yapıyı alt alta çeviriyoruz
+        grid-template-columns: 1fr !important; 
+        padding: 15px !important;
+        gap: 20px !important;
+    }
+
+    .sidebar {
+        // Menü yukarıda yatay veya dikey geniş dursun
+        width: 100% !important;
+        .sidebar-nav ul {
+            flex-direction: row !important; // Menü elemanlarını yan yana diz
+            overflow-x: auto; // Eğer sığmazsa kaydırılabilir yap
+            padding-bottom: 10px;
+            
+            li a {
+                padding: 12px 15px !important;
+                font-size: 0.9rem !important;
+                white-space: nowrap; // Yazılar alt satıra geçmesin
+            }
+        }
+    }
+
+    .top-row {
+        // Üstteki bakiye ve piyasa kartlarını alt alta al
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .header {
+        padding: 0 15px !important;
+        .logo { font-size: 1.3rem !important; }
+        .nav-menu { display: none; } // "Cüzdanım" yazısını mobilde gizle (yer kazandırır)
+    }
+
+    // Kart iç boşluklarını mobilde biraz daraltalım ki içerik sığsın
+    .balance-card, .chart-box, .trade-box, .history-table, .settings-card {
+        padding: 20px !important;
+        border-radius: 18px !important;
+    }
+
+    // Al-Sat butonlarını mobilde alt alta alalım (daha kolay basılır)
+    .trade-buttons {
+        flex-direction: column !important;
+        button { width: 100% !important; }
+    }
+}
+
 // HEADER
 .header {
     background: var(--card-bg);

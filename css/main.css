@@ -38,6 +38,49 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+@media (max-width: 992px) {
+  .dashboard {
+    grid-template-columns: 1fr !important;
+    padding: 15px !important;
+    gap: 20px !important;
+  }
+  .sidebar {
+    width: 100% !important;
+  }
+  .sidebar .sidebar-nav ul {
+    flex-direction: row !important;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .sidebar .sidebar-nav ul li a {
+    padding: 12px 15px !important;
+    font-size: 0.9rem !important;
+    white-space: nowrap;
+  }
+  .top-row {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .header {
+    padding: 0 15px !important;
+  }
+  .header .logo {
+    font-size: 1.3rem !important;
+  }
+  .header .nav-menu {
+    display: none;
+  }
+  .balance-card, .chart-box, .trade-box, .history-table, .settings-card {
+    padding: 20px !important;
+    border-radius: 18px !important;
+  }
+  .trade-buttons {
+    flex-direction: column !important;
+  }
+  .trade-buttons button {
+    width: 100% !important;
+  }
+}
 .header {
   background: var(--card-bg);
   height: 75px;
