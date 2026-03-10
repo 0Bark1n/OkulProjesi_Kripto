@@ -314,6 +314,61 @@ body {
   color: #818cf8;
 }
 
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.dashboard-chart-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.dashboard-chart-controls .coin-selector {
+  margin-bottom: 0 !important;
+}
+.dashboard-chart-controls .update-speed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(128, 128, 128, 0.1);
+  padding: 6px 15px;
+  border-radius: 12px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.dashboard-chart-controls .update-speed span {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+.dashboard-chart-controls .update-speed .intbox {
+  width: 60px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-weight: 800;
+  text-align: center;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.dashboard-chart-controls .update-speed .intbox:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.2);
+}
+
 .trade-buttons {
   display: flex !important;
   gap: 15px;
@@ -341,6 +396,44 @@ body {
   box-shadow: none;
 }
 
+.trade-box form {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.trade-box form .input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 200px;
+}
+.trade-box form .input-group label {
+  font-size: 1rem;
+  font-weight: 800;
+}
+.trade-box form .input-group input, .trade-box form .input-group select {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 15px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  outline: none;
+  transition: 0.2s;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.trade-box form .input-group input:focus, .trade-box form .input-group select:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.2);
+}
+
 .history-table table {
   width: 100%;
   border-collapse: separate;
@@ -363,6 +456,45 @@ body {
 }
 .history-table table tr td:last-child {
   border-radius: 0 15px 15px 0;
+}
+
+.market-summary-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+.market-summary-card .market-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.market-summary-card .market-item .coin-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+.market-summary-card .market-item .coin-info i {
+  font-size: 1.8rem;
+}
+.market-summary-card .market-item .coin-values {
+  text-align: right;
+}
+.market-summary-card .market-item .coin-values h4 {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+.market-summary-card .market-item .coin-values p {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-top: 3px;
+}
+.market-summary-card .market-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 5px 0;
 }
 
 .bank-account {
@@ -456,22 +588,6 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.settings-panel .setting-item .intbox {
-  width: 100px;
-  padding: 12px;
-  border-radius: 10px;
-  border: 2px solid var(--border-color);
-  background: var(--bg-color);
-  color: var(--text-color);
-  font-weight: 800;
-  text-align: center;
-  font-size: 1.1rem;
-  outline: none;
-  transition: 0.2s;
-}
-.settings-panel .setting-item .intbox:focus {
-  border-color: #818cf8;
-}
 .settings-panel .btn-reset {
   width: 100%;
   padding: 20px;
@@ -538,83 +654,6 @@ body {
   color: #818cf8;
   font-weight: 700;
   font-size: 0.95rem;
-}
-
-.trade-box form {
-  display: flex;
-  gap: 20px;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-.trade-box form .input-group {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 200px;
-}
-.trade-box form .input-group label {
-  font-size: 1rem;
-  font-weight: 800;
-}
-.trade-box form .input-group input, .trade-box form .input-group select {
-  width: 100%;
-  padding: 18px 20px;
-  border-radius: 15px;
-  border: 2px solid var(--border-color);
-  background: var(--bg-color);
-  color: var(--text-color);
-  font-weight: 800;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.1rem;
-  outline: none;
-  transition: 0.2s;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-}
-.trade-box form .input-group input:focus, .trade-box form .input-group select:focus {
-  border-color: #818cf8;
-  box-shadow: 0 0 10px rgba(129, 140, 248, 0.2);
-}
-
-.market-summary-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 15px;
-}
-.market-summary-card .market-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.market-summary-card .market-item .coin-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 800;
-  font-size: 1.1rem;
-}
-.market-summary-card .market-item .coin-info i {
-  font-size: 1.8rem;
-}
-.market-summary-card .market-item .coin-values {
-  text-align: right;
-}
-.market-summary-card .market-item .coin-values h4 {
-  font-size: 1.3rem;
-  font-weight: 900;
-}
-.market-summary-card .market-item .coin-values p {
-  font-size: 1rem;
-  font-weight: 800;
-  margin-top: 3px;
-}
-.market-summary-card .market-divider {
-  height: 1px;
-  background: var(--border-color);
-  margin: 5px 0;
 }
 
 .text-success {
@@ -736,22 +775,6 @@ body {
   margin: 0;
 }
 
-@media (max-width: 768px) {
-  .main-footer {
-    text-align: center !important;
-  }
-  .main-footer .footer-container {
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-  .main-footer .social-icons {
-    justify-content: center !important;
-  }
-  .main-footer .footer-section {
-    width: 100% !important;
-    min-width: 100% !important;
-  }
-}
 .sidebar-nav {
   width: 100%;
 }
@@ -847,7 +870,104 @@ body {
   padding-bottom: 10px;
 }
 
+.dashboard-charts-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  width: 100%;
+  align-items: start;
+}
+
+.real-api-panel .chart-header {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.real-api-panel .chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+}
+.real-api-panel .coin-selector, .real-api-panel .timeframe-selector {
+  display: flex !important;
+  gap: 5px;
+  background: rgba(128, 128, 128, 0.1);
+  padding: 6px;
+  border-radius: 12px;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 0 !important;
+}
+
+.real-coin-btn, .time-btn {
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.real-coin-btn.active, .time-btn.active {
+  background: #818cf8;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(129, 140, 248, 0.3);
+}
+.real-coin-btn:hover:not(.active), .time-btn:hover:not(.active) {
+  background: rgba(128, 128, 128, 0.15);
+}
+
 @media (max-width: 992px) {
+  .chart-box {
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+  .dashboard-charts-row {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .real-api-panel .chart-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .real-api-panel .timeframe-selector, .real-api-panel .coin-selector {
+    width: 100%;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px;
+  }
+  .dashboard-chart-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .dashboard-chart-controls .update-speed {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .main-footer {
+    text-align: center !important;
+  }
+  .main-footer .footer-container {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .main-footer .social-icons {
+    justify-content: center !important;
+  }
+  .main-footer .footer-section {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
   .sidebar-nav .accordion-menu {
     flex-direction: row !important;
     overflow-x: auto;

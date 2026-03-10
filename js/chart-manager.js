@@ -51,6 +51,7 @@ function initChart() {
 
     var chart = new ApexCharts(document.querySelector("#mainChart"), options);
     chart.render();
+    
     const savedCoin = localStorage.getItem('last_selected_coin') || 'BTC';
     const targetBtn = document.querySelector(`.coin-btn[data-coin="${savedCoin}"]`);
 

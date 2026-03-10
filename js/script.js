@@ -5,4 +5,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initChart();
     initTrades();
     initNavigation();
+    initRealAPI();
 });

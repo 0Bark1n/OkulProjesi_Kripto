@@ -12,7 +12,8 @@ const initNavigation = () => {
         'assets-panel': document.getElementById('assets-panel'),
         'history-panel': document.getElementById('history-panel'),
         'settings-panel': document.getElementById('settings-panel'),
-        'contributors-panel': document.getElementById('contributors-panel')
+        'contributors-panel': document.getElementById('contributors-panel'),
+        'real-api-panel': document.getElementById('real-api-panel')
     };
 
     // --- 1. AKORDEON MENÜ YÖNETİCİSİ (Hatalar Giderildi) ---

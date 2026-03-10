@@ -63,6 +63,7 @@
                         </button>
                         <ul class="submenu">
                             <li><a href="#" data-target="dashboard-content" class="active"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                            <li><a href="#" data-target="real-api-panel"><i class="fas fa-globe"></i> Gerçek Piyasalar</a></li>
                             <li><a href="#" data-target="assets-panel"><i class="fas fa-chart-pie"></i> Varlıklarım</a></li>
                             <li><a href="#" data-target="history-panel"><i class="fas fa-history"></i> İşlem Geçmişi</a></li>
                         </ul>
@@ -116,10 +117,18 @@
 
                 <div class="chart-box">
                     <div class="chart-header">
-                        <div class="coin-selector">
-                            <button class="coin-btn active" data-coin="BTC">Bitcoin</button>
-                            <button class="coin-btn" data-coin="ETH">Ethereum</button>
+                        <div class="dashboard-chart-controls">
+                            <div class="coin-selector">
+                                <button class="coin-btn active" data-coin="BTC">Bitcoin</button>
+                                <button class="coin-btn" data-coin="ETH">Ethereum</button>
+                            </div>
+                            
+                            <div class="update-speed">
+                                <span>Hız (sn):</span>
+                                <input type="number" value="5" class="intbox" min="1" max="60">
+                            </div>
                         </div>
+
                         <div class="price-info">
                             <h2 id="displayPrice">$0.00</h2>
                             <span id="priceChange" class="live-status">
@@ -148,6 +157,42 @@
                             <button type="button" id="btn-sell" class="btn-sell">Sat</button>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div id="real-api-panel" class="panel tab-content" style="display: none;">
+                <div class="dashboard-charts-row">
+                    
+                    <div class="chart-box main-chart">
+                        <div class="chart-header">
+                            <div class="chart-controls">
+                                <div class="coin-selector">
+                                    <button class="real-coin-btn active" data-coin="BTC">Bitcoin</button>
+                                    <button class="real-coin-btn" data-coin="ETH">Ethereum</button>
+                                </div>
+                                <div class="timeframe-selector">
+                                    <button class="time-btn active" data-time="1D">1G</button>
+                                    <button class="time-btn" data-time="1M">1A</button>
+                                    <button class="time-btn" data-time="1Y">1Y</button>
+                                    <button class="time-btn" data-time="ALL">Hepsi</button>
+                                </div>
+                            </div>
+                            <div class="price-info">
+                                <h2 id="realDisplayPrice">Veri Çekiliyor...</h2>
+                                <span class="live-status">
+                                    <span class="red-dot"></span> Binance Canlı
+                                </span>
+                            </div>
+                        </div>
+                        <div id="realApiChart"></div>
+                    </div>
+
+                    <div class="chart-box donut-chart">
+                        <h3>Piyasa Hacmi (Global)</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.6; margin-bottom: 20px;">Gerçek zamanlı piyasa dominasyonu</p>
+                        <div id="realApiDonut"></div>
+                    </div>
+
                 </div>
             </div>
 
@@ -205,7 +250,6 @@
                     <h3><i class="fas fa-tools"></i> Sistem Ayarları</h3>
                     <div class="settings-options">
                         <div class="setting-item"><span>Bildirim Sesleri</span><input type="checkbox" checked></div>
-                        <div class="setting-item"><span>Güncelleme Sıklığı (Saniye)</span><input type="number" value="5" class="intbox"></div>
                         <button id="btn-reset-data" class="btn-reset">Tüm Verileri Sıfırla</button>
                     </div>
                 </div>
@@ -276,6 +320,7 @@
     <script src="js/varlik-manager.js"></script> <script src="js/trade-manager.js"></script>
     <script src="js/setup-settings.js"></script>
     <script src="js/navigation-manager.js"></script>
+    <script src="js/real-api.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
