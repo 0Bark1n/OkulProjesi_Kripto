@@ -64,6 +64,7 @@
                         <ul class="submenu">
                             <li><a href="#" data-target="dashboard-content" class="active"><i class="fas fa-th-large"></i> Dashboard</a></li>
                             <li><a href="#" data-target="real-api-panel"><i class="fas fa-globe"></i> Gerçek Piyasalar</a></li>
+                            <li><a href="#" data-target="currency-panel"><i class="fas fa-exchange-alt"></i> Döviz Çevirici</a></li>
                             <li><a href="#" data-target="assets-panel"><i class="fas fa-chart-pie"></i> Varlıklarım</a></li>
                             <li><a href="#" data-target="history-panel"><i class="fas fa-history"></i> İşlem Geçmişi</a></li>
                         </ul>
@@ -196,6 +197,63 @@
                 </div>
             </div>
 
+            <div id="currency-panel" class="panel tab-content" style="display: none;">
+                <div class="dashboard-charts-row">
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-money-bill-wave" style="color: #22c55e;"></i> Canlı Döviz Çevirici</h3>
+                        <p style="opacity: 0.7; margin-bottom: 25px;">Gerçek zamanlı piyasa kurlarıyla para birimlerini anında dönüştürün.</p>
+                        
+                        <div class="currency-converter-box">
+                            <div class="input-group">
+                                <label>Miktar</label>
+                                <input type="number" id="currency-amount" value="50" min="0">
+                            </div>
+                            
+                            <div class="currency-selectors">
+                                <div class="input-group">
+                                    <label>Kimden</label>
+                                    <select id="currency-from"></select>
+                                </div>
+                                
+                                <button id="swap-currency" class="swap-btn"><i class="fas fa-exchange-alt"></i></button>
+                                
+                                <div class="input-group">
+                                    <label>Kime</label>
+                                    <select id="currency-to"></select>
+                                </div>
+                            </div>
+                            
+                            <div class="currency-converter-box">
+                                <div class="currency-result">
+                                    <h2 id="currency-result-text">Yükleniyor...</h2>
+                                    <p id="currency-rate-text">Veriler çekiliyor...</p>
+                                </div>
+                                
+                                <div id="api-update-info" class="api-update-info">
+                                    <i class="fas fa-sync-alt"></i> Son Güncelleme: <b>Bekleniyor...</b> | Sonraki: <b>Hesaplanıyor...</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-star" style="color: #f59e0b;"></i> Popüler Kurlar</h3>
+                        <p style="opacity: 0.7; margin-bottom: 20px;">Türk Lirası (TRY) Karşılıkları</p>
+                        
+                        <div class="popular-rates-list" id="popular-rates-list">
+                            <div class="rate-item"><span>🇺🇸 USD</span> <b>Yükleniyor...</b></div>
+                            <div class="rate-item"><span>🇪🇺 EUR</span> <b>Yükleniyor...</b></div>
+                            <div class="rate-item"><span>🇬🇧 GBP</span> <b>Yükleniyor...</b></div>
+                            <div class="rate-item"><span>🇯🇵 JPY</span> <b>Yükleniyor...</b></div>
+                            <div class="rate-item"><span>🇨🇭 CHF</span> <b>Yükleniyor...</b></div>
+                            <div class="rate-item"><span>🇦🇪 AED</span> <b>Yükleniyor...</b></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div id="assets-panel" class="panel" style="display: none;">
                 <div class="top-row">
                     <div class="chart-box">
@@ -263,12 +321,12 @@
                         <span>250701001</span>
                     </div>
                     <div class="contributor-card">
-                        <img src="assets/user-icon.png" alt="Baran Akşen" class="user-logo">
+                        <img src="assets/baran.jpeg" alt="Baran Akşen" class="user-logo">
                         <h4>Baran Akşen</h4>
                         <span>250701018</span>
                     </div>
                     <div class="contributor-card">
-                        <img src="assets/user-icon.png" alt="Zerdeşt Temel" class="user-logo">
+                        <img src="assets/zerdest_test.jpeg" alt="Zerdeşt Temel" class="user-logo">
                         <h4>Zerdeşt Temel</h4>
                         <span>250701025</span>
                     </div>
@@ -284,6 +342,14 @@
     </main>
 
     <div id="toast-container"></div>
+
+    <div id="image-lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-wrapper" id="lightbox-wrapper">
+            <img class="lightbox-img" id="lightbox-img">
+            <div class="lightbox-text" id="lightbox-text">İsim Soyisim</div>
+        </div>
+    </div>
 
     <footer class="main-footer">
         <div class="footer-container">
@@ -321,6 +387,8 @@
     <script src="js/setup-settings.js"></script>
     <script src="js/navigation-manager.js"></script>
     <script src="js/real-api.js"></script>
+    <script src="js/currency-manager.js"></script>
+    <script src="js/lightbox.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

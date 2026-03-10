@@ -143,7 +143,18 @@
 .contributor-card {
     display: flex; flex-direction: column; align-items: center; text-align: center; padding: 35px 20px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; transition: 0.3s;
     &:hover { transform: translateY(-5px); border-color: #818cf8; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-    .user-logo { width: 90px; height: 90px; margin-bottom: 20px; filter: invert(var(--logo-invert)); object-fit: contain; }
+    .user-logo {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 20px;
+        // BEYAZ LOGO BUG'INI SİLİYORUZ: Eski invert kodunu kaldır:
+        // filter: invert(var(--logo-invert));
+
+        // YENİ: Daire Yapma ve Fotoğrafı Sığdırma Kodları
+        border-radius: 50%; // Mükemmel daire yapar
+        object-fit: cover; // Kare olmayan fotoğrafları bile bozmadan daireye sığdırır
+        border: 3px solid #818cf8; // İsteğe bağlı: Fotoğrafın etrafına mor bir çerçeve ekler
+    }
     h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: 5px; }
     span { color: #818cf8; font-weight: 700; font-size: 0.95rem; }
 }
@@ -322,4 +333,207 @@
             .submenu { max-height: none !important; display: flex; flex-direction: row; li a { padding: 12px 18px !important; margin: 0; white-space: nowrap; } }
         }
     }
+}
+
+// ==========================================
+// 10. PREMIUM LIGHTBOX (NOKTA ATIŞI BÜYÜME)
+// ==========================================
+
+.contributor-card .user-logo {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(129, 140, 248, 0.4);
+    }
+}
+
+.lightbox {
+    display: none; // Başlangıçta yok
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+
+    &.active-bg { opacity: 1; }
+
+    // Resim ve Yazıyı Tutan Yuvarlak Kapsayıcı
+    .lightbox-wrapper {
+        position: fixed; // JS ile koordinat verebilmek için fixed olmalı
+        border-radius: 50%;
+        overflow: hidden; // YAZININ YUVARLAKTAN TAŞMASINI ENGELLER!
+        border: 4px solid transparent;
+        // Animasyon hızı ve zıplama efekti
+        transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1.1); 
+        box-shadow: 0 0 0 transparent;
+        cursor: default;
+
+        .lightbox-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        // Yuvarlağın İçindeki İsim Yazısı
+        .lightbox-text {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.7); // Yazı okunsun diye hafif daha koyulaştırdık
+            backdrop-filter: blur(4px);
+            color: white;
+            text-align: center;
+            padding: 15px 5px; // Yazılar iki satır olacağı için padding'i ayarladık
+            font-size: 1.1rem;
+            font-weight: 800;
+            line-height: 1.4; // Satır arası boşluk
+            transform: translateY(100%); 
+            transition: transform 0.4s ease;
+
+            // YENİ: Alt satıra gelecek olan mor Öğrenci Numarası
+            .lightbox-id {
+                color: #818cf8; // O meşhur mor rengimiz
+                font-size: 0.9rem;
+                font-weight: 700;
+                display: block; // Alt satıra atmasını garantiler
+                margin-top: 3px;
+                letter-spacing: 1px; // Rakamlar şık dursun diye hafif aralık
+            }
+        }
+    }
+
+    // Büyümüş (Açık) Halinin Kuralları (!important ile JS'i eziyoruz)
+    &.expanded .lightbox-wrapper {
+        top: 50% !important;
+        left: 50% !important;
+        // Ekran boyutuna göre otomatik ayarlanır, taşmaz
+        width: clamp(250px, 40vw, 400px) !important;
+        height: clamp(250px, 40vw, 400px) !important;
+        transform: translate(-50%, -50%) !important; // Tam ortaya alır
+        border-color: #818cf8 !important;
+        box-shadow: 0 0 50px rgba(129, 140, 248, 0.5) !important;
+
+        .lightbox-text {
+            transform: translateY(0); // Yazı aşağıdan kayarak gelir
+        }
+    }
+
+    .lightbox-close {
+        position: absolute; top: 30px; right: 40px; color: #fff; font-size: 50px;
+        font-weight: bold; cursor: pointer; transition: 0.2s;
+        &:hover { color: #ef4444; transform: scale(1.2); }
+    }
+}
+
+// ==========================================
+// 11. DÖVİZ ÇEVİRİCİ VE POPÜLER KURLAR
+// ==========================================
+
+.api-update-info {
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: -5px; // Sonuç kutusuna biraz yanaştırır
+    
+    i { margin-right: 5px; color: #818cf8; animation: spin 4s linear infinite; }
+    b { font-weight: 700; color: var(--text-color); }
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.currency-converter-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    // BÜTÜN INPUT VE SELECT'LER İÇİN GEÇERLİ KURAL (Miktar kutusunu düzeltir)
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label { font-size: 1rem; font-weight: 800; color: var(--text-color); }
+
+        input, select {
+            width: 100%; 
+            padding: 16px 20px; 
+            border-radius: 12px;
+            border: 2px solid var(--border-color) !important;
+            background: var(--bg-color) !important; // Siyah arka plan
+            color: var(--text-color) !important; // Beyaz yazı
+            font-weight: 800; 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem; 
+            outline: none; 
+            transition: 0.2s;
+            -webkit-appearance: none !important; 
+            appearance: none !important;
+
+            &:focus { border-color: #818cf8 !important; box-shadow: 0 0 10px rgba(129, 140, 248, 0.2); }
+        }
+    }
+
+    .currency-selectors {
+        display: flex; align-items: flex-end; gap: 15px;
+        .input-group { flex: 1; } // Yan yana eşit böler
+    }
+
+    // Ortadaki Değiştir (Swap) Butonu
+    .swap-btn {
+        background: rgba(128, 128, 128, 0.1) !important; border: 2px solid var(--border-color) !important;
+        color: var(--text-color) !important; width: 55px; height: 55px; border-radius: 50%;
+        cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; margin-bottom: 2px; outline: none;
+        &:hover { background: #818cf8 !important; color: white !important; border-color: #818cf8 !important; transform: rotate(180deg); }
+        &:active { transform: scale(0.9) rotate(180deg); }
+    }
+
+    // Sonuç Ekranı
+    .currency-result {
+        margin-top: 15px; padding: 25px; background: rgba(128, 128, 128, 0.05);
+        border-radius: 15px; border: 1px solid var(--border-color); text-align: center;
+        h2 { font-size: 2.2rem; color: #818cf8; font-weight: 900; margin-bottom: 5px; letter-spacing: 1px; word-break: break-all; }
+        p { font-size: 0.95rem; opacity: 0.6; font-weight: 700; }
+    }
+}
+
+// YENİ: POPÜLER KURLAR LİSTESİ TASARIMI
+.popular-rates-list {
+    display: flex; flex-direction: column; gap: 12px;
+
+    .rate-item {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 15px 20px; background: rgba(128, 128, 128, 0.05);
+        border-radius: 12px; border: 1px solid var(--border-color);
+        transition: 0.2s;
+        cursor: pointer; // YENİ: Tıklanabilir el işareti çıkar
+        user-select: none;
+
+        &:hover { 
+            border-color: #818cf8; 
+            transform: translateX(5px);
+            background: rgba(129, 140, 248, 0.1); // YENİ: Üstüne gelince hafif mor yanar
+        }
+
+        span { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; opacity: 0.9; }
+        b { color: #818cf8; font-size: 1.1rem; }
+    }
+}
+
+.sidebar-nav .menu-toggle {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    box-shadow: none !important;
+}
+
+// Mobilde ok yönünü aşağıya çevirir ve alt alta dizer
+@media (max-width: 768px) {
+    .currency-selectors { flex-direction: column; align-items: center !important; .input-group { width: 100%; }
+    .swap-btn { transform: rotate(90deg); margin: 10px 0; &:hover { transform: rotate(270deg); } } }
 }
