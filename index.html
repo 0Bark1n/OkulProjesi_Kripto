@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KriptoProje | Dashboard</title>
+    
+    <meta name="author" content="Barkın Arık">
+    <meta name="description" content="ATÜ | Ön-Yüz Yazılım Geliştirme bölümü İleri Web Tasarımı dersi için Dijital Finans ve Kripto Cüzdan Arayüzü projesi">
+    <meta name="keywords" content="ATÜ, borsa yazılım simülasyonu, İleri Web Tasarımı projesi">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://0bark1n.github.io/OkulProjesi_Kripto/">
+    <meta property="og:title" content="KriptoProje | ATÜ İleri Web Tasarımı Projesi">
+    <meta property="og:description" content="Gerçek piyasa verileriyle kripto dünyasını simüle edin. Grup No 2 tarafından geliştirilen Dijital Finans ve Kripto Cüzdan Arayüzü projesi.">
+    <meta property="og:image" content="https://0bark1n.github.io/OkulProjesi_Kripto/assets/ATU_Logo.png">
+
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://0bark1n.github.io/OkulProjesi_Kripto/">
+
+    <title>KriptoProje</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -36,19 +52,38 @@
     </header>
 
     <main class="dashboard">
+        
         <aside class="sidebar">
             <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="#" class="active" data-target="dashboard-content"><i class="fas fa-th-large"></i> Dashboard</a></li>
-                    <li><a href="#" data-target="assets-panel"><i class="fas fa-chart-pie"></i> Varlıklarım</a></li>
-                    <li><a href="#" data-target="history-panel"><i class="fas fa-list-ul"></i> İşlem Geçmişi</a></li>
-                    <li><a href="#" data-target="settings-panel"><i class="fas fa-cog"></i> Ayarlar</a></li>
-                    <li><a href="#" data-target="contributors-panel"><i class="fas fa-users"></i> Emeği Geçenler</a></li>
+                <ul class="accordion-menu">
+                    <li class="menu-group open">
+                        <button class="menu-toggle">
+                            <span class="title"><i class="fas fa-chart-line"></i> Borsa</span>
+                            <i class="fas fa-chevron-down arrow"></i>
+                        </button>
+                        <ul class="submenu">
+                            <li><a href="#" data-target="dashboard-content" class="active"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                            <li><a href="#" data-target="assets-panel"><i class="fas fa-chart-pie"></i> Varlıklarım</a></li>
+                            <li><a href="#" data-target="history-panel"><i class="fas fa-history"></i> İşlem Geçmişi</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-group">
+                        <button class="menu-toggle">
+                            <span class="title"><i class="fas fa-ellipsis-h"></i> Diğer</span>
+                            <i class="fas fa-chevron-down arrow"></i>
+                        </button>
+                        <ul class="submenu">
+                            <li><a href="#" data-target="settings-panel"><i class="fas fa-cog"></i> Ayarlar</a></li>
+                            <li><a href="#" data-target="contributors-panel"><i class="fas fa-users"></i> Emeği Geçenler</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </aside>
 
         <section class="content">
+            
             <div id="dashboard-content" class="tab-content">
                 <div class="top-row">
                     <div class="balance-card">
@@ -68,7 +103,7 @@
 
                     <div class="market-summary-card">
                         <div class="market-item">
-                            <div class="coin-info"><i class="fab fa-bitcoin"></i> <span>Bitcoin (BTC)</span></div>
+                            <div class="coin-info"><i class="fab fa-bitcoin" style="color:#f7931a;"></i> <span>Bitcoin (BTC)</span></div>
                             <div class="coin-values"><h4 id="card-price-BTC">$0.00</h4><p id="card-change-BTC">0.0%</p></div>
                         </div>
                         <div class="market-divider"></div>
@@ -134,8 +169,7 @@
                                         <th>Değer (USD)</th>
                                     </tr>
                                 </thead>
-                                <tbody id="assets-table-body">
-                                    </tbody>
+                                <tbody id="assets-table-body"></tbody>
                             </table>
                         </div>
                     </div>
@@ -160,8 +194,7 @@
                                     <th>Durum</th>
                                 </tr>
                             </thead>
-                            <tbody id="full-history-body">
-                                </tbody>
+                            <tbody id="full-history-body"></tbody>
                         </table>
                     </div>
                 </div>
@@ -181,27 +214,28 @@
             <div id="contributors-panel" class="settings-panel tab-content" style="display: none;">
                 <div class="contributors-grid">
                     <div class="contributor-card">
-                        <img src="assets/user-icon.png" alt="User" class="user-logo">
+                        <img src="assets/user-icon.png" alt="Berat Can Dağlı" class="user-logo">
                         <h4>Berat Can Dağlı</h4>
                         <span>250701001</span>
                     </div>
                     <div class="contributor-card">
-                        <img src="assets/user-icon.png" alt="User" class="user-logo">
+                        <img src="assets/user-icon.png" alt="Baran Akşen" class="user-logo">
                         <h4>Baran Akşen</h4>
                         <span>250701018</span>
                     </div>
                     <div class="contributor-card">
-                        <img src="assets/user-icon.png" alt="User" class="user-logo">
+                        <img src="assets/user-icon.png" alt="Zerdeşt Temel" class="user-logo">
                         <h4>Zerdeşt Temel</h4>
                         <span>250701025</span>
                     </div>
                     <div class="contributor-card">
-                        <img src="assets/user-icon.png" alt="User" class="user-logo">
+                        <img src="assets/user-icon.png" alt="Barkın Arık" class="user-logo">
                         <h4>Barkın Arık</h4>
                         <span>250701030</span>
                     </div>
                 </div>
             </div>
+
         </section>
     </main>
 
@@ -239,8 +273,7 @@
     <script src="js/theme.js"></script>
     <script src="js/notif-manager.js"></script>
     <script src="js/chart-manager.js"></script>
-    <script src="js/varlik-manager.js"></script>
-    <script src="js/trade-manager.js"></script>
+    <script src="js/varlik-manager.js"></script> <script src="js/trade-manager.js"></script>
     <script src="js/setup-settings.js"></script>
     <script src="js/navigation-manager.js"></script>
     <script src="js/script.js"></script>

@@ -1,5 +1,3 @@
-// scss/_components.scss
-
 // Kart Genel Yapısı
 .balance-card, .chart-box, .trade-box, .history-table, .market-summary-card, .settings-card, .contributor-card {
     background: var(--card-bg);
@@ -10,30 +8,19 @@
 
 // Coin Seçici (BTC/ETH Butonları)
 .coin-selector {
-    display: flex !important;
-    gap: 10px;
-    margin-bottom: 20px;
-    background: rgba(128, 128, 128, 0.1);
-    padding: 6px;
-    border-radius: 12px;
-    width: fit-content;
+    display: flex !important; gap: 10px; margin-bottom: 20px;
+    background: rgba(128, 128, 128, 0.1); padding: 6px; border-radius: 12px; width: fit-content;
 
     .coin-btn {
-        background: transparent;
-        border: none;
-        color: var(--text-color);
-        padding: 10px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 800;
+        background: transparent; border: none; color: var(--text-color);
+        padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 800;
         &.active { background: var(--card-bg); color: $primary; }
     }
 }
 
 // Al-Sat Butonları
 .trade-buttons {
-    display: flex !important;
-    gap: 15px;
+    display: flex !important; gap: 15px;
     button {
         flex: 1; padding: 18px; border: none; border-radius: 15px;
         font-weight: 900; font-size: 1.1rem; color: white; cursor: pointer;
@@ -54,7 +41,7 @@
     }
 }
 
-// --- PARA EKLE (BANKA HESABI) FIX ---
+// PARA EKLE (BANKA HESABI) FIX
 .bank-account {
     display: flex; justify-content: space-between; align-items: center;
     margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
@@ -67,263 +54,184 @@
         }
         button { 
             background: #22c55e; color: white; border: none; padding: 12px 20px; 
-            border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 1rem;
-            transition: 0.2s;
+            border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 1rem; transition: 0.2s;
             &:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3); }
         }
     }
 }
 
-// --- AYARLAR PANELI (SETTINGS) FIX ---
+// AYARLAR PANELI (SETTINGS) FIX
 .settings-panel {
     .settings-card h3 { 
         display: flex; align-items: center; gap: 12px; margin-bottom: 25px; 
-        font-weight: 800; font-size: 1.4rem; 
-        i { color: #ef4444; } 
+        font-weight: 800; font-size: 1.4rem; i { color: #ef4444; } 
     }
-    
     .settings-options { display: flex; flex-direction: column; gap: 15px; }
-    
     .setting-item {
         display: flex; justify-content: space-between; align-items: center;
         padding: 20px 25px; background: rgba(128,128,128,0.05); 
         border-radius: 15px; border: 1px solid var(--border-color);
-        
         span { font-weight: 800; font-size: 1.1rem; }
-        
         input[type="checkbox"] {
             appearance: none; width: 32px; height: 32px; border: 3px solid #818cf8; 
             border-radius: 8px; cursor: pointer; position: relative; transition: 0.2s;
-            &:checked { 
-                background: #818cf8; 
-                &::after { 
-                    content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; 
-                    color: white; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); 
-                } 
-            }
+            &:checked { background: #818cf8; &::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: white; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); } }
         }
-        
         .intbox { 
             width: 100px; padding: 12px; border-radius: 10px; border: 2px solid var(--border-color); 
-            background: var(--bg-color); color: var(--text-color); font-weight: 800; 
-            text-align: center; font-size: 1.1rem; outline: none; transition: 0.2s;
+            background: var(--bg-color); color: var(--text-color); font-weight: 800; text-align: center; font-size: 1.1rem; outline: none; transition: 0.2s;
             &:focus { border-color: #818cf8; }
         }
     }
-    
     .btn-reset {
         width: 100%; padding: 20px; background: #ef4444; color: white; border: none; 
         border-radius: 15px; font-weight: 900; font-size: 1.1rem; cursor: pointer; 
-        transition: 0.3s; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px;
-        box-shadow: 0 5px 0 #b91c1c;
+        transition: 0.3s; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 5px 0 #b91c1c;
         &:hover { background: #dc2626; transform: translateY(2px); box-shadow: 0 3px 0 #b91c1c; }
         &:active { transform: translateY(5px); box-shadow: none; }
     }
 }
 
-// --- EMEĞİ GEÇENLER (CONTRIBUTORS) FIX ---
-.contributors-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; width: 100%;
-}
-
+// EMEĞİ GEÇENLER (CONTRIBUTORS) FIX
+.contributors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; width: 100%; }
 .contributor-card {
     display: flex; flex-direction: column; align-items: center; text-align: center;
     padding: 35px 20px; background: var(--card-bg); border: 1px solid var(--border-color); 
     border-radius: 20px; transition: 0.3s;
-    
     &:hover { transform: translateY(-5px); border-color: #818cf8; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-    
-    .user-logo { 
-        width: 90px; height: 90px; margin-bottom: 20px; 
-        filter: invert(var(--logo-invert)); object-fit: contain; 
-    }
-    
+    .user-logo { width: 90px; height: 90px; margin-bottom: 20px; filter: invert(var(--logo-invert)); object-fit: contain; }
     h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: 5px; }
     span { color: #818cf8; font-weight: 700; font-size: 0.95rem; }
 }
 
-// --- AL/SAT FORMU INPUTLARI ---
+// AL/SAT FORMU INPUTLARI
 .trade-box form {
     display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap;
-    
     .input-group {
         flex: 1; display: flex; flex-direction: column; gap: 10px; min-width: 200px;
         label { font-size: 1rem; font-weight: 800; }
-        
         input, select {
-            width: 100%; padding: 18px 20px; border-radius: 15px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-color); color: var(--text-color);
-            font-weight: 800; font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem; outline: none; transition: 0.2s;
-            appearance: none; // Select okunu düzeltir
-            
+            width: 100%; padding: 18px 20px; border-radius: 15px; border: 2px solid var(--border-color);
+            background: var(--bg-color); color: var(--text-color); font-weight: 800; font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem; outline: none; transition: 0.2s; appearance: none; 
             &:focus { border-color: #818cf8; box-shadow: 0 0 10px rgba(129, 140, 248, 0.2); }
         }
     }
 }
 
-// --- PİYASA ÖZETİ (MARKET SUMMARY) ---
+// PİYASA ÖZETİ (MARKET SUMMARY)
 .market-summary-card {
     display: flex; flex-direction: column; justify-content: center; gap: 15px;
-    
     .market-item {
         display: flex; justify-content: space-between; align-items: center;
-        .coin-info {
-            display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.1rem;
-            i { font-size: 1.8rem; }
-        }
-        .coin-values {
-            text-align: right;
-            h4 { font-size: 1.3rem; font-weight: 900; }
-            p { font-size: 1rem; font-weight: 800; margin-top: 3px; }
-        }
+        .coin-info { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.1rem; i { font-size: 1.8rem; } }
+        .coin-values { text-align: right; h4 { font-size: 1.3rem; font-weight: 900; } p { font-size: 1rem; font-weight: 800; margin-top: 3px; } }
     }
     .market-divider { height: 1px; background: var(--border-color); margin: 5px 0; }
 }
 
-// --- DİNAMİK RENKLER (JavaScript İçin Zorunlu) ---
 .text-success { color: #22c55e !important; }
 .text-danger { color: #ef4444 !important; }
 
-#displayPrice:contains('...') {
-    animation: pulse 1.5s infinite;
-    opacity: 0.5;
-}
-
-@keyframes pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
-}
+#displayPrice:contains('...') { animation: pulse 1.5s infinite; opacity: 0.5; }
+@keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
 // ==========================================
 // KESİN ÇÖZÜM FOOTER (JİLET GİBİ)
 // ==========================================
 .main-footer {
-    background: var(--card-bg) !important;
-    padding: 50px 0 20px 0 !important;
-    margin-top: 80px !important;
-    border-top: 1px solid var(--border-color) !important;
-    width: 100% !important;
-    color: var(--text-color) !important;
-    clear: both; // Diğer elemanların altına itmek için
+    background: var(--card-bg) !important; padding: 50px 0 20px 0 !important; margin-top: 80px !important;
+    border-top: 1px solid var(--border-color) !important; width: 100% !important; color: var(--text-color) !important; clear: both; 
 
     .footer-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex !important;
-        flex-wrap: wrap !important; // Mobilde alt alta geçmesi için
-        justify-content: space-between !important;
-        padding: 0 5% !important;
-        gap: 30px;
+        max-width: 1400px; margin: 0 auto; display: flex !important; flex-wrap: wrap !important; 
+        justify-content: space-between !important; padding: 0 5% !important; gap: 30px;
     }
 
     .footer-section {
-        flex: 1; // Eşit genişlik
-        min-width: 250px; // Çok sıkışmasın
-        margin-bottom: 30px;
-
-        h3 {
-            font-size: 1.2rem !important;
-            margin-bottom: 20px !important;
-            color: var(--text-color) !important;
-            font-weight: 800 !important;
-            text-transform: uppercase;
-        }
-
-        p {
-            color: var(--text-color) !important;
-            opacity: 0.8 !important;
-            line-height: 1.6 !important;
-            font-size: 0.95rem !important;
-            margin-bottom: 20px;
-        }
-
+        flex: 1; min-width: 250px; margin-bottom: 30px;
+        h3 { font-size: 1.2rem !important; margin-bottom: 20px !important; color: var(--text-color) !important; font-weight: 800 !important; text-transform: uppercase; }
+        p { color: var(--text-color) !important; opacity: 0.8 !important; line-height: 1.6 !important; font-size: 0.95rem !important; margin-bottom: 20px; }
         ul {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-
-            li {
-                margin-bottom: 12px !important;
-                
-                a {
-                    color: var(--text-color) !important;
-                    opacity: 0.7 !important;
-                    text-decoration: none !important;
-                    transition: 0.3s ease;
-                    font-size: 0.95rem !important;
-                    display: inline-block;
-
-                    &:hover {
-                        opacity: 1 !important;
-                        color: #818cf8 !important; // $primary moru
-                        transform: translateX(5px);
-                    }
+            list-style: none !important; padding: 0 !important; margin: 0 !important;
+            li { margin-bottom: 12px !important; 
+                a { color: var(--text-color) !important; opacity: 0.7 !important; text-decoration: none !important; transition: 0.3s ease; font-size: 0.95rem !important; display: inline-block;
+                    &:hover { opacity: 1 !important; color: #818cf8 !important; transform: translateX(5px); }
                 }
             }
         }
     }
 
-    // Logo Özel Stil
-    .about .logo {
-        margin-bottom: 20px !important;
-        display: block;
-        font-size: 1.6rem !important;
-        span { color: #818cf8 !important; }
-    }
-
+    .about .logo { margin-bottom: 20px !important; display: block; font-size: 1.6rem !important; span { color: #818cf8 !important; } }
     .social-icons {
-        display: flex !important;
-        gap: 15px !important;
-        margin-top: 20px;
-        
-        a {
-            color: var(--text-color) !important;
-            font-size: 1.3rem !important;
-            opacity: 0.7 !important;
-            transition: 0.3s;
-            &:hover {
-                opacity: 1 !important;
-                color: #818cf8 !important;
-                transform: scale(1.2);
-            }
+        display: flex !important; gap: 15px !important; margin-top: 20px; 
+        a { color: var(--text-color) !important; font-size: 1.3rem !important; opacity: 0.7 !important; transition: 0.3s;
+            &:hover { opacity: 1 !important; color: #818cf8 !important; transform: scale(1.2); }
         }
     }
+    .footer-bottom { text-align: center !important; margin-top: 40px !important; padding-top: 25px !important; border-top: 1px solid var(--border-color) !important; width: 100%; p { font-size: 0.85rem !important; opacity: 0.5 !important; margin: 0; } }
+}
 
-    .footer-bottom {
-        text-align: center !important;
-        margin-top: 40px !important;
-        padding-top: 25px !important;
-        border-top: 1px solid var(--border-color) !important;
-        width: 100%;
-        
-        p {
-            font-size: 0.85rem !important;
-            opacity: 0.5 !important;
-            margin: 0;
+@media (max-width: 768px) {
+    .main-footer {
+        text-align: center !important; 
+        .footer-container { flex-direction: column !important; align-items: center !important; }
+        .social-icons { justify-content: center !important; }
+        .footer-section { width: 100% !important; min-width: 100% !important; }
+    }
+}
+
+// ==========================================
+// YAN MENÜ AKORDEON TASARIMI (BEYAZ KUTU BUG'I DÜZELTİLDİ)
+// ==========================================
+.sidebar-nav {
+    width: 100%;
+
+    .accordion-menu {
+        list-style: none; padding: 0; margin: 0;
+        display: flex; flex-direction: column; gap: 15px;
+    }
+
+    .menu-group {
+        background: transparent; border-radius: 15px; overflow: hidden; transition: all 0.3s ease;
+
+        .menu-toggle {
+            appearance: none !important; -webkit-appearance: none !important; -moz-appearance: none !important;
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+            background: transparent !important; border: none !important; box-shadow: none !important;
+            padding: 15px 20px; color: var(--text-color); font-size: 1.1rem; font-weight: 800; cursor: pointer; outline: none !important;
+
+            .title { display: flex; align-items: center; i { margin-right: 15px; color: #818cf8; width: 25px; } }
+            .arrow { transition: transform 0.3s ease; opacity: 0.6; }
+            &:hover { background: rgba(128, 128, 128, 0.05) !important; }
+        }
+
+        .submenu {
+            list-style: none; padding: 0; margin: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+            li a {
+                display: flex; align-items: center; padding: 12px 20px 12px 55px; color: var(--text-color);
+                text-decoration: none; font-size: 1rem; font-weight: 600; opacity: 0.6; border-radius: 10px;
+                margin: 0 10px 5px 10px; transition: all 0.2s ease;
+                i { margin-right: 15px; width: 20px; }
+                &:hover, &.active { opacity: 1; background: #818cf8 !important; color: #ffffff !important; }
+            }
+        }
+
+        &.open {
+            background: rgba(128, 128, 128, 0.04); border: 1px solid var(--border-color);
+            .menu-toggle .arrow { transform: rotate(180deg); color: #818cf8; opacity: 1; }
+            .submenu { max-height: 500px; padding-bottom: 10px; }
         }
     }
 }
 
-// MOBİL AYARI
-@media (max-width: 768px) {
-    .main-footer {
-        text-align: center !important;
-        
-        .footer-container {
-            flex-direction: column !important;
-            align-items: center !important;
-        }
-
-        .social-icons {
-            justify-content: center !important;
-        }
-        
-        .footer-section {
-            width: 100% !important;
-            min-width: 100% !important;
+@media (max-width: 992px) {
+    .sidebar-nav .accordion-menu {
+        flex-direction: row !important; overflow-x: auto;
+        .menu-group {
+            background: none !important; border: none !important;
+            .menu-toggle { display: none !important; }
+            .submenu { max-height: none !important; display: flex; flex-direction: row; li a { padding: 12px 18px !important; margin: 0; white-space: nowrap; } }
         }
     }
 }
